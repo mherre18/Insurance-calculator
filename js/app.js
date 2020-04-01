@@ -61,7 +61,7 @@ function Show() {
 
 }
 
-Show.prototype.showError = function(message, type) {
+Show.prototype.showMessage = function(message, type) {
    const div = document.createElement('div');
 
         if(type == 'error') {
@@ -106,7 +106,14 @@ Show.prototype.showResult = function(insurance, total) {
     <p>Total: ${total} </p>
     `;
 
-    result.appendChild(div);
+    const spinner = document.querySelector('#loading img');   
+    spinner.style.display = 'block';
+    
+    setTimeout(function(){
+        spinner.style.display = 'none';
+        result.appendChild(div);
+    }, 3000);
+    
 }
     
 
@@ -129,14 +136,21 @@ form.addEventListener('submit', function(e) {
     const show = new Show();
 
     if(selectedBrand === '' || selectedYear === '' || type === '') {
-        show.showError('Missign data, check the form and try again', 'error');
+        show.showMessage('Missign data, check the form and try again', 'error');
     } else {
+
+        const results = document.querySelector('#result div');
+        if(results != null) {
+            results.remove();
+        }
+
         const insurance = new Insurance(selectedBrand, selectedYear, type);
         //console.log(insurance);
 
         const expens = insurance.calculateInsurance();
 
         show.showResult(insurance, expens);
+        show.showMessage('Calculating', 'correct');
     }
 
 });

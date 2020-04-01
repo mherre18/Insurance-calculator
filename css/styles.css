@@ -4,7 +4,7 @@ background: -webkit-linear-gradient(to right, #E8648F, #FF9F6E);
 background: linear-gradient(to right, #E8648F, #FF9F6E); 
 }
 
-header {
+.header {
     background-color:#FFA554;
     padding: 10px;
     text-transform: uppercase;
@@ -72,4 +72,13 @@ header h1 {
     margin-bottom: 20px;
     text-align: center;
     color: #6392FF;
+}
+
+.correct {
+    background-color: #FBE9E7;
+    border: 1px solid #E8BB4D;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #E8BB4D;
 }
