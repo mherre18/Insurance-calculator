@@ -4,6 +4,59 @@ function Insurance(brand, year, type) {
     this.type = type;
 }
 
+Insurance.prototype.calculateInsurance = function(info) {
+    //console.log(info);
+/* 
+    1 = American = 1.25
+    2 = Asian = 1.10
+    3 = European = 1.30
+
+*/
+    let expens;    
+    const initial = 2000;
+
+    switch(this.brand) {
+        case '1':
+            expens = initial * 1.25;
+            break;
+    }
+
+    switch(this.brand) {
+        case '2':
+            expens = initial * 1.10;
+            break;
+    }
+
+    switch(this.brand) {
+        case '3':
+            expens = initial * 1.35;
+            break;
+    }
+
+    //console.log(expens);
+
+    const diference = new Date().getFullYear() - this.year;
+    // Each year with -2% of the value
+    //console.log(diference);
+
+    expens -= ((diference * 2) * expens) / 100;
+   
+
+    /* 
+        basic insurance +30%
+        complete insurance +45%
+    */
+
+    if(this.type === 'basic') {
+        expens *= 1.30;
+    } else {
+        expens *= 1.45;
+    }
+
+    //console.log(expens);
+    return expens;
+}    
+
 function Show() {
 
 }
@@ -46,7 +99,10 @@ form.addEventListener('submit', function(e) {
     if(selectedBrand === '' || selectedYear === '' || type === '') {
         show.showError('Missign data, check the form and try again', 'error');
     } else {
-        console.log('ok');
+        const insurance = new Insurance(selectedBrand, selectedYear, type);
+        //console.log(insurance);
+
+        const expens = insurance.calculateInsurance();
     }
 
 });
