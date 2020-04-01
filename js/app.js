@@ -77,6 +77,38 @@ Show.prototype.showError = function(message, type) {
         }, 3000)
     }
 
+Show.prototype.showResult = function(insurance, total) {
+    const result = document.getElementById('result');
+    let brand;
+
+    switch(insurance.brand) {
+        case '1':
+        brand = 'American';
+        break;
+
+        case '2':
+        brand = 'Asian';
+        break;
+
+        case '1':
+        brand = 'European';
+        break;
+    }
+
+    //console.log(brand);
+
+    const div = document.createElement('div');
+    div.innerHTML = `
+    <p>Summary: </p>
+    <p>Brand: ${brand} </p>
+    <p>Year: ${insurance.year} </p>
+    <p>Type: ${insurance.type} </p>
+    <p>Total: ${total} </p>
+    `;
+
+    result.appendChild(div);
+}
+    
 
 const form = document.getElementById('calculate-insurance');
 
@@ -103,6 +135,8 @@ form.addEventListener('submit', function(e) {
         //console.log(insurance);
 
         const expens = insurance.calculateInsurance();
+
+        show.showResult(insurance, expens);
     }
 
 });
