@@ -8,6 +8,23 @@ function Show() {
 
 }
 
+Show.prototype.showError = function(message, type) {
+   const div = document.createElement('div');
+
+        if(type == 'error') {
+            div.classList.add('message', 'error');
+        } else {
+            div.classList.add('message', 'correct');
+        }
+        div.innerHTML = `${message}`;
+        form.insertBefore(div, document.querySelector('.form-group'));
+
+        setTimeout(function() {
+            document.querySelector('.message').remove();
+        }, 3000)
+    }
+
+
 const form = document.getElementById('calculate-insurance');
 
 form.addEventListener('submit', function(e) {
@@ -27,7 +44,7 @@ form.addEventListener('submit', function(e) {
     const show = new Show();
 
     if(selectedBrand === '' || selectedYear === '' || type === '') {
-        console.log('mising data');
+        show.showError('Missign data, check the form and try again', 'error');
     } else {
         console.log('ok');
     }

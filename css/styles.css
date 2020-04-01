@@ -14,7 +14,6 @@ header {
     border-top-right-radius: 20px;
 }
 
-
 header h1 {
     font-size: 22px;
     margin:0;
@@ -64,4 +63,13 @@ header h1 {
     padding: 10px;
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.error {
+    background-color: #FBE9E7;
+    border: 1px solid #6392FF;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #6392FF;
 }
